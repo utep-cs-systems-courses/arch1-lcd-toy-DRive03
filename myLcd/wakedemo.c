@@ -23,10 +23,9 @@ void wdt_c_handler()
   // redrawScreen = 1;
   //}
 
-  if (swbuzzCounter == 250) {
-    swbuzzCounter = 0;
+  if (swbuzzCounter == 10) {
+    swbuzzCounter = 0;   
     redrawScreen = 1;
-    buzzer_state_advance();
   }
 }
   
@@ -42,12 +41,14 @@ void main()
   switch_init();
   
   enableWDTInterrupts();      /**< enable periodic interrupt */
+  
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
   clearScreen(COLOR_BLUE);
   while (1) {			/* forever */
-    if (redrawScreen) {
+    if (redrawScreen) {      
       redrawScreen = 0;
+      buzzer_state_advance();
     }
     P1OUT &= ~LED_GREEN;	/* green off */
     or_sr(0x10);		/**< CPU OFF */

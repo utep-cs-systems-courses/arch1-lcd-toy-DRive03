@@ -4,7 +4,7 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 
-
+              
 /** Draw single pixel at x,row 
  *
  *  \param col Column to draw to
@@ -113,18 +113,20 @@ void drawChar8x12(u_char rcol, u_char rrow, char c,
 {
   u_char col = 0;
   u_char row = 0;
-  u_char bit = 0x01;
+  u_char bit = 0x80;
   u_char oc = c - 0x20;
 
   lcd_setArea(rcol, rrow, rcol + 7, rrow + 12); /* relative to requested col/row */
-  while (row < 13) {
-    while (col < 8) {
-      u_int colorBGR = (font_8x12[oc][col] & bit) ? fgColorBGR : bgColorBGR;
+  while (row < 12) {
+    while (col < 8 ) {
+      u_int colorBGR = (font_8x12[oc][row] & bit) ? fgColorBGR : bgColorBGR;
       lcd_writeColor(colorBGR);
       col++;
+      bit >>= 1;
     }
     col = 0;
-    bit <<= 1;
+    //    bit <<= 1;
+    bit = 0x80;
     row++;
   }
 }
@@ -133,9 +135,10 @@ void drawString8x12(u_char col, u_char row, char *string,
 		u_int fgColorBGR, u_int bgColorBGR)
 {
   u_char cols = col;
+  u_char rows = row;
   while (*string) {
-    drawChar8x12(cols, row, *string++, fgColorBGR, bgColorBGR);
-    cols += 12;
+    drawChar8x12(cols,rows, *string++, fgColorBGR, bgColorBGR);
+    cols += 13;
   }
 }
 
