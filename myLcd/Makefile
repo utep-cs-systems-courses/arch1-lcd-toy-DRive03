@@ -11,11 +11,16 @@ all:wakedemo.elf
 
 #additional rules for files
 wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o wdt_handler.o font-8x12.o lcdutils.o lcddraw.o buzzer.o led.o p2_interrupt_handler.o stateMachines.o switches.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd
+
+assemblydemo.elf: ${COMMON_OBJECTS} mainAssembly.o wdt_handler.o lcdutils.o lcddraw.o stateAssembly.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd 
 
 load: wakedemo.elf
 	msp430loader.sh $^
 
+load2: assemblydemo.elf
+	msp430loader.sh $^
 
 buzzer.o: buzzer.c buzzer.h
 
@@ -37,6 +42,7 @@ lcddraw.o: lcddraw.c lcddraw.h lcdutils.h
 
 lcdutils.o: lcdutils.c lcdutils.h
 
+stateAssembly.o: stateAssembly.h stateAssembly.s
 
 clean:
 	rm -f *.o *.elf

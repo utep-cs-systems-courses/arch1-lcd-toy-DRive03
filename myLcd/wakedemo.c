@@ -23,7 +23,7 @@ void wdt_c_handler()
   // redrawScreen = 1;
   //}
 
-  if (swbuzzCounter == 10) {
+  if (swbuzzCounter == 130) {
     swbuzzCounter = 0;   
     redrawScreen = 1;
   }

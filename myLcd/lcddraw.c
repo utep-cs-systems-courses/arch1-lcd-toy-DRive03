@@ -38,12 +38,37 @@ void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height,
 }
 
 
+void fillRectangle2(u_char colMin, u_char rowMin, u_char width, u_int colorBGR)
+{
+  u_int height = width - 15;
+  u_char colLimit = colMin + width, rowLimit = rowMin + height;
+  lcd_setArea(colMin, rowMin, colLimit - 1, rowLimit - 1);
+  u_int total = width * height;
+  u_int c = 0;
+  while ((c++) < total) {
+    lcd_writeColor(colorBGR);
+  }
+}
+
+
 void fillTriangle(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR)
 {
-  for (int r = 0; r <= 40; r++) {
+  for (int r = 0; r <= size; r++) {
     for (int c = 0; c <= r/2; c++) {
       drawPixel(offset_c + c, offset_r + r, colorBGR);
       drawPixel(offset_c - c, offset_r + r, colorBGR);
+    }
+  }
+}
+
+void fillDiamond(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR){
+  u_char ofset2 = offset_r * 2;
+  for (int r = 0; r <= size; r++) {
+    for (int c = 0; c <= r/2; c++) {
+      drawPixel(offset_c + c, offset_r + r, colorBGR);
+      drawPixel(offset_c - c, offset_r + r, colorBGR);
+      drawPixel(offset_c + c, ofset2 - r, colorBGR);
+      drawPixel(offset_c - c, ofset2 - r, colorBGR);      
     }
   }
 }

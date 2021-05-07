@@ -23,7 +23,11 @@ void drawPixel(u_char col, u_char row, u_int colorBGR);
  */
 void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height, u_int colorBGR);
 
+void fillRectangle2(u_char colMin, u_char rowMin, u_char width, u_int colorBGR);
+
 void fillTriangle(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR);
+
+void fillDiamond(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR);
 
 /** Clear screen (fill with color)
  *  
