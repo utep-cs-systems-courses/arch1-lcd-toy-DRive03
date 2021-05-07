@@ -1,8 +1,8 @@
-        .arch msp430g25453
+        .arch msp430g25453 
 	.p2align 1,0
 	#include "lcddraw.h"
 	.data	
-st:	.word 2 	
+st:	.word 0 	
 	
 	.text
 	
@@ -16,9 +16,9 @@ jt:
 
 state_selection:
 	cmp #4, r12	
-	jc default	
+	jc default
+	add r12, r12
 	mov jt(r12), r0
-	add st, r12
 
 
 default:
@@ -31,8 +31,7 @@ case0:
 	mov #40,r14
 	mov #0x07e0,r15
 	call #fillTriangle
-	mov #0,r12
-	add st,r12
+	mov #1,r12
 	pop r0
 
 case1:
@@ -41,8 +40,7 @@ case1:
 	mov #30,r14
 	mov #0x07e0,r15
 	call #fillRectangle2
-	mov #1,r12
-	add st,r12
+	mov #2,r12
 	pop r0
 	
 case2:
@@ -51,8 +49,7 @@ case2:
 	mov #40,r14
 	mov #0xff,r15
 	call #fillTriangle
-        mov #2,r12
-	add st,r12
+	mov #3,r12
 	pop r0
 	
 case3:
@@ -61,5 +58,5 @@ case3:
 	mov #30,r14
 	mov #0xffff,r15
 	call #fillRectangle2
-        mov #0,r12
+	mov #0,r12
 	pop r0
