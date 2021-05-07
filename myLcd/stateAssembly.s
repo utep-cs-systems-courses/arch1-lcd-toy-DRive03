@@ -49,7 +49,7 @@ case2:
 	mov #30,r12
 	mov #30,r13
 	mov #40,r14
-	mov #0x001f,r15
+	mov #0xff,r15
 	call #fillTriangle
         mov #2,r12
 	add st,r12
