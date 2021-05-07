@@ -97,7 +97,9 @@ void buzzer_state_3_advance(){
 
    case 8: buzzer_set_period(0); fillRectangle(10,100,100,20,COLOR_BLUE); fillRectangle(10,110,100,20,COLOR_ORANGE); buzz_state++; break;
      
-   case 9: buzzer_set_period(0); fillRectangle(10,110,100,20,COLOR_BLUE); buzz_state = 0; break;
+   case 9: buzzer_set_period(0); fillRectangle(10,110,100,20,COLOR_BLUE); fillRectangle(10,120,100,20,COLOR_ORANGE); buzz_state++; break;
+
+  case 10: buzzer_set_period(0); fillRectangle(10,120,100,20,COLOR_BLUE); buzz_state = 0; break;
      
   default: buzz_state = 0;
     
