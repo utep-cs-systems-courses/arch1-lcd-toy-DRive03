@@ -61,12 +61,14 @@ void fillTriangle(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR)
   }
 }
 
-void fillDiamond(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR){
+void fillStar(u_char offset_c, u_char offset_r, u_char size, u_int colorBGR){
   u_char ofset2 = offset_r * 2;
   for (int r = 0; r <= size; r++) {
     for (int c = 0; c <= r/2; c++) {
+      
       drawPixel(offset_c + c, offset_r + r, colorBGR);
       drawPixel(offset_c - c, offset_r + r, colorBGR);
+
       drawPixel(offset_c + c, ofset2 - r, colorBGR);
       drawPixel(offset_c - c, ofset2 - r, colorBGR);      
     }

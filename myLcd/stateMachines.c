@@ -42,10 +42,10 @@ void buzzer_state_advance(){
 void buzzer_state_1_advance(){
   static char buzz_state = 0 ;
   switch(buzz_state) {
-  case 0: buzzer_set_period(14431); fillDiamond(50,50,40,COLOR_GREEN); buzz_state++; break;
-  case 1: buzzer_set_period(14431); fillDiamond(60,60,50,COLOR_BLACK); buzz_state++; break;
-   case 2: buzzer_set_period(0);  fillDiamond(70,70,40,COLOR_ORANGE); buzz_state++; break;
-   case 3: buzzer_set_period(0); fillDiamond(80,80,50,COLOR_WHITE); buzz_state++; break;  
+  case 0: buzzer_set_period(14431); fillStar(50,50,40,COLOR_GREEN); buzz_state++; break;
+  case 1: buzzer_set_period(14431); fillStar(50,50,50,COLOR_BLACK); buzz_state++; break;
+   case 2: buzzer_set_period(0);  fillStar(50,50,40,COLOR_ORANGE); buzz_state++; break;
+   case 3: buzzer_set_period(0); fillStar(50,50,50,COLOR_WHITE); buzz_state++; break;  
    case 4: buzzer_set_period(0); buzz_state = 0; break;   
   default: buzz_state = 0;
     
